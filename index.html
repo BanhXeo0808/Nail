@@ -338,9 +338,16 @@
     }
 
     .hero {
+      position: relative;
+      overflow: hidden;
+      min-height: calc(100vh - 5rem);
+      display: grid;
+      align-items: center;
       padding: clamp(var(--space-10), 5vw, var(--space-16)) 0 clamp(var(--space-16), 10vw, var(--space-24));
     }
     .hero-grid {
+      position: relative;
+      z-index: 2;
       display: grid;
       align-items: center;
       gap: var(--space-10);
@@ -573,6 +580,46 @@
       max-width: 38rem;
     }
 
+    .section#services {
+      position: relative;
+    }
+
+    .float-top-services {
+      position: absolute;
+      top: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 4880px;
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    .section#about {
+      position: relative;
+    }
+
+    .float-top-about {
+      position: absolute;
+      top: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2280px;
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    .float-top-hero {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(2548px, 145vw);
+      height: auto;
+      opacity: 0.72;
+      pointer-events: none;
+      z-index: 1;
+    }
+
     .gallery-grid {
       display: grid;
       gap: var(--space-4);
@@ -622,8 +669,15 @@
     }
 
     @media (max-width: 759px) {
-      .gallery-slide video {
-        height: 190px; /* matches your mobile image height */
+      .float-top-hero {
+        top: 4.5rem;
+        width: min(1200px, 210vw);
+        opacity: 0.5;
+      }
+
+      .hero-copy {
+        position: relative;
+        z-index: 2;
       }
     }
 
@@ -692,7 +746,7 @@
     .hours-list {
       display: grid;
       gap: var(--space-3);
-      margin-top: var(--space-4);
+      margin-top: var(--space-3);
     }
     .hours-row {
       display: flex;
@@ -779,6 +833,30 @@
       transform: translateY(0);
     }
 
+    .panel p.about-main {
+      margin-bottom: 1rem !important;
+      display: block;
+    }
+
+    .about-follow {
+      margin-top: var(--space-4);
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+    }
+
+    .about-follow a {
+      color: var(--color-primary);
+      font-weight: 500;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+    }
+
+    .about-follow a:hover {
+      border-bottom-color: var(--color-primary-hover);
+    }
    
     .about-layout > div:last-child {
       display: flex;
@@ -817,13 +895,14 @@
       .about-hours-col {
         grid-column: 2;
         grid-row: 1;
-        padding-top: 9.5rem;
+        padding-top: 8.5rem;
       }
 
       /* Row 2 Left: Why clients choose us */
       .about-layout-new > div:nth-child(3) {
         grid-column: 1;
         grid-row: 2;
+        align-self: stretch;
       }
 
       /* Row 2 Right: Google Reviews */
@@ -895,12 +974,12 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      font-size: var(--text-xs);
+      font-size: var(--text-sm);
       color: var(--color-text-muted);
     }
 
     .reviews-score strong {
-      font-size: var(--text-sm);
+      font-size: var(--text-lg);
       color: var(--color-text);
     }
 
@@ -931,6 +1010,11 @@
     .review-card strong {
       font-size: var(--text-xs);
       color: var(--color-text);
+    }
+
+    .panel.panel-why {
+      padding: clamp(var(--space-8), 5vw, var(--space-12));
+      min-height: 520px;
     }
 
     @media (min-width: 760px) {
@@ -1174,6 +1258,7 @@
 
   <main id="main-content">
     <section class="hero" id="home">
+      <img class="float-top-hero" src="./assets/gallery/head.png" alt="" aria-hidden="true">
       <div class="container hero-grid">
         <div class="hero-copy reveal">
           <span class="eyebrow">Relaxing salon experience</span>
@@ -1198,18 +1283,6 @@
             </div>
           </div>
         </div>
-
-        <div class="hero-visual reveal">
-          <div class="hero-card">
-            <div class="logo-frame">
-              <img src="./assets/logo.png" alt="Branded Nail Pros & Spa card" width="900" height="600" loading="eager" decoding="async">
-            </div>
-            <div class="floating-note">
-              <strong>Nail Pros & Spa</strong>
-              <span>Precision in Every Polish. Perfection in Every Detail.</span>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
 
@@ -1222,10 +1295,22 @@
             <div class="section-heading">
               <span class="eyebrow">About us</span>
               <h2>Professional nail care in a warm and welcoming space</h2>
-              <p>At Nail Pros &amp; Spa, we believe self-care is essential. Our salon is committed to providing exceptional nail and spa services in a clean, comfortable, and welcoming environment.</p>
+              
             </div>
             <div class="panel">
+              <p class="about-main">
+                At Nail Pros &amp; Spa, we are dedicated to providing a clean, relaxing, and professional experience. Our skilled technicians deliver high-quality nail care and spa services to help you look and feel your best.</p>
               <p>We prioritize hygiene, use high-quality products, and focus on customer satisfaction. Whether you're here for a quick touch-up or a full pampering session, our goal is to make every visit relaxing and enjoyable.</p>
+              <div class="about-follow">
+                <span>Follow us:</span>
+                <a href="https://www.facebook.com/profile.php?id=100050942666530" target="_blank" rel="noopener">
+                  Facebook
+                </a>
+                <span>·</span>
+                <a href="https://www.instagram.com/nailprosandspa" target="_blank" rel="noopener">
+                  Instagram
+                </a>
+              </div>
             </div>
           </div>
 
@@ -1234,7 +1319,7 @@
 
           <!-- BOTTOM LEFT: Why clients choose us -->
           <div class="reveal">
-            <div class="panel">
+            <div class="panel panel-why">
               <h3>Why clients choose us</h3>
               <div class="feature-list">
                 <div class="feature-item">
@@ -1255,11 +1340,27 @@
                     <span>Detailed work and consistent service for everyday beauty and special occasions.</span>
                   </div>
                 </div>
-                <div class="feature-item">
-                  <div class="feature-icon" aria-hidden="true">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="9"/></svg>
-                  </div>
-                  <div>
+                    <div class="feature-item">
+                      <div class="feature-icon" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1.8">
+                          <path d="M12 3l3.5 7 7.5 1-5.5 5.3L19 22l-7-3.7L5 22l1.5-5.7L1 11l7.5-1L12 3z"></path>
+                        </svg>
+                      </div>
+                      <div>
+                        <strong>Premium products</strong>
+                        <span>High-end polishes, gels, and organic spa products for lasting beauty.</span>
+                      </div>
+                    </div>
+                    <div class="feature-item">
+                      <div class="feature-icon" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                          <circle cx="12" cy="12" r="9" />
+                          <path d="M12 7v5l3 2" />
+                        </svg>
+                      </div>
+                      <div>
                     <strong>Relaxing experience</strong>
                     <span>From quick appointments to full pampering sessions, every visit is designed to feel easy and restorative.</span>
                   </div>
